@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商才哥的百宝箱</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #add8e6; /* 淡蓝色 */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-image: url('https://ww1.sinaimg.cn/mw690/005UJ76vgy1hs3tpvejxaj30zu25oahw.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+            color: white;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 每行显示3个图标 */
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .icon-button {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: background-color 0.3s;
+        }
+        .icon-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .icon-text {
+            font-size: 14px;
+            margin-top: 5px;
+            color: black;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .form-group input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .calculate-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #90ee90; /* 浅绿色 */
+            color: white;
+        }
+        .calculate-button:hover {
+            background-color: #76c7c0;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .hidden {
+            display: none;
+        }
+        .result-container {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 300px;
+        }
+        .password-input {
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .contact-info p {
+            margin: 10px 0;
+        }
+        .contact-info strong {
+            font-size: 16px;
+        }
+        .icon-image {
+            width: 30px; /* 缩小图标尺寸 */
+            height: 30px; /* 缩小图标尺寸 */
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            .grid-container {
+                gap: 15px;
+            }
+            .icon-button {
+                width: 80px;
+                height: 80px;
+            }
+            .icon-text {
+                font-size: 12px;
+            }
+            .form-group {
+                margin-bottom: 10px;
+            }
+            .form-group input {
+                padding: 6px;
+            }
+            .calculate-button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .back-button {
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="home-page" class="container">
+        <h1 style="color: white;">电商才哥的百宝箱</h1>
+        <p style="color: white;">我们会一直更新，希望大家多多支持，如果有想添加的信息或者功能，请联系才哥。</p>
+        <div class="grid-container">
+            <!-- 第一行 -->
+            <button class="icon-button" onclick="navigateTo('roi-calculator')">
+                <img src="https://t1.91dangke.com/ffb24c224a49561bf260b36254c7868d.jpg?x-oss-process=style/ppt_detail_img" alt="ROI计算器" class="icon-image">
+                <span class="icon-text">ROI计算器</span>
+            </button>
+            <button class="icon-button" onclick="navigateTo('commission-calculator')">
+                <img src="https://t1.91dangke.com/ffb24c224a49561bf260b36254c7868d.jpg?x-oss-process=style/ppt_detail_img" alt="佣金计算器" class="icon-image">
+                <span class="icon-text">佣金计算器</span>
+            </button>
+            <button class="icon-button" onclick="navigateTo('talent-directory')">
+                <img src="https://www.fanpusoft.com/d/file/2020-06/5864418e4a2e5fa87eac7ed6bce04b33.png" alt="达人通讯录" class="icon-image">
+                <span class="icon-text">达人通讯录</span>
+            </button>
+            <!-- 第二行 -->
+            <button class="icon-button" onclick="navigateTo('brand-directory')">
+                <img src="https://51vj.cn/images/appIcon/txl.png" alt="品牌方通讯录" class="icon-image">
+                <span class="icon-text">品牌方通讯录</span>
+            </button>
+            <button class="icon-button" onclick="navigateTo('contact-caige')">
+                <img src="https://www.huifuzhinan.com/uploads/20201223/5cf85bac5e2db8a29e6fec30fbc1ab9c.jpg" alt="联系才哥" class="icon-image">
+                <span class="icon-text">联系才哥</span>
+            </button>
+            <button class="icon-button" onclick="navigateTo('job-information')">
+                <img src="https://pic.greenxf.com/phoneico/2016-12/201612221122532657.png" alt="招聘信息" class="icon-image">
+                <span class="icon-text">招聘信息</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="new-page" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>新页面</h1>
+        <p>这是新页面的内容。</p>
+    </div>
+
+    <div id="roi-calculator" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>ROI计算器</h1>
+        <div class="form-container">
+            <div class="form-group">
+                <label for="retail-price">零售价:</label>
+                <input type="number" id="retail-price" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="cost-price">成本价含运税:</label>
+                <input type="number" id="cost-price" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="acceptance-rate">签收率 (%):</label>
+                <input type="number" id="acceptance-rate" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="other-costs">其他费用:</label>
+                <input type="number" id="other-costs" step="any" required>
+            </div>
+            <button class="calculate-button" onclick="calculateROI()">保本投放ROI比计算</button>
+            <div id="roi-result" class="result-container"></div>
+        </div>
+    </div>
+
+    <div id="commission-calculator" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>佣金计算器</h1>
+        <div class="form-container">
+            <div class="form-group">
+                <label for="commission-retail-price">零售价:</label>
+                <input type="number" id="commission-retail-price" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="commission-cost-price">成本价:</label>
+                <input type="number" id="commission-cost-price" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="commission-shipping-cost">运费:</label>
+                <input type="number" id="commission-shipping-cost" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="platform-tax-point">平台税点 (%):</label>
+                <input type="number" id="platform-tax-point" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="commission-other-costs">其他费用:</label>
+                <input type="number" id="commission-other-costs" step="any" required>
+            </div>
+            <button class="calculate-button" onclick="calculateCommission()">计算佣金</button>
+        </div>
+        <div id="commission-result" class="result-container"></div>
+    </div>
+
+    <div id="talent-directory" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>达人通讯录</h1>
+        <div class="form-container">
+            <div class="form-group password-input">
+                <label for="directory-password">请输入密码:</label>
+                <input type="password" id="directory-password" required>
+            </div>
+            <button class="calculate-button" onclick="verifyPassword()">密码验证</button>
+            <div id="directory-message" class="result-container"></div>
+        </div>
+    </div>
+
+    <div id="brand-directory" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>品牌方通讯录</h1>
+        <div class="form-container">
+            <button class="calculate-button" onclick="window.location.href='https://kdocs.cn/l/cjfmV0koavL8'">查看品牌方通讯录</button>
+            <button class="calculate-button" onclick="navigateTo('contact-caige')">添加我的品牌信息</button>
+        </div>
+    </div>
+
+    <div id="contact-caige" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>联系才哥</h1>
+        <div class="contact-info">
+            <p>才哥的微信号：<strong>13017504176</strong></p>
+            <p>您可以长按上述号码进行复制，也可以在下方点击“我知道了”后自动返回首页。</p>
+            <button class="calculate-button" onclick="navigateHome()">我知道了</button>
+        </div>
+    </div>
+
+    <div id="job-information" class="container hidden">
+        <button class="back-button" onclick="navigateBack()">返回</button>
+        <h1>招聘信息</h1>
+        <div class="form-container">
+            <button class="calculate-button" onclick="window.location.href='https://kdocs.cn/l/ckU9gEiejKwO'">我要找工作的</button>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(pageId) {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('new-page').classList.add('hidden');
+            document.getElementById('roi-calculator').classList.add('hidden');
+            document.getElementById('commission-calculator').classList.add('hidden');
+            document.getElementById('talent-directory').classList.add('hidden');
+            document.getElementById('brand-directory').classList.add('hidden');
+            document.getElementById('contact-caige').classList.add('hidden');
+            document.getElementById('job-information').classList.add('hidden');
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function navigateBack() {
+            document.getElementById('new-page').classList.add('hidden');
+            document.getElementById('roi-calculator').classList.add('hidden');
+            document.getElementById('commission-calculator').classList.add('hidden');
+            document.getElementById('talent-directory').classList.add('hidden');
+            document.getElementById('brand-directory').classList.add('hidden');
+            document.getElementById('contact-caige').classList.add('hidden');
+            document.getElementById('job-information').classList.add('hidden');
+            document.getElementById('home-page').classList.remove('hidden');
+        }
+
+        function navigateHome() {
+            document.getElementById('contact-caige').classList.add('hidden');
+            document.getElementById('home-page').classList.remove('hidden');
+        }
+
+        function calculateROI() {
+            const retailPrice = parseFloat(document.getElementById('retail-price').value);
+            const costPrice = parseFloat(document.getElementById('cost-price').value);
+            const acceptanceRate = parseFloat(document.getElementById('acceptance-rate').value) / 100;
+            const otherCosts = parseFloat(document.getElementById('other-costs').value);
+
+            if (isNaN(retailPrice) || isNaN(costPrice) || isNaN(acceptanceRate) || isNaN(otherCosts)) {
+                alert('请输入有效的数字');
+                return;
+            }
+
+            const totalCost = costPrice + otherCosts;
+            const grossMargin = totalCost / retailPrice;
+            const roiRatio = 1 / (grossMargin * acceptanceRate);
+
+            document.getElementById('roi-result').innerText = `保本投放ROI比为1:${roiRatio.toFixed(2)}`;
+        }
+
+        function calculateCommission() {
+            const retailPrice = parseFloat(document.getElementById('commission-retail-price').value);
+            const costPrice = parseFloat(document.getElementById('commission-cost-price').value);
+            const shippingCost = parseFloat(document.getElementById('commission-shipping-cost').value);
+            const platformTaxPoint = parseFloat(document.getElementById('platform-tax-point').value) / 100;
+            const otherCosts = parseFloat(document.getElementById('commission-other-costs').value);
+
+            if (isNaN(retailPrice) || isNaN(costPrice) || isNaN(shippingCost) || isNaN(platformTaxPoint) || isNaN(otherCosts)) {
+                alert('请输入有效的数字');
+                return;
+            }
+
+            const platformTaxes = retailPrice * platformTaxPoint;
+            const grossProfitSpace = retailPrice - costPrice - shippingCost - platformTaxes - otherCosts;
+            let resultHtml = '';
+
+            for (let commissionRate = 5; commissionRate <= 60; commissionRate++) {
+                const commissionAmount = retailPrice * (commissionRate / 100);
+                const netProfit = grossProfitSpace - commissionAmount;
+
+                if (netProfit >= -10) {
+                    resultHtml += `<p>佣金率${commissionRate}%, 佣金金额: ${commissionAmount.toFixed(2)}, 剩余纯利: ${netProfit.toFixed(2)}</p>`;
+                } else {
+                    break;
+                }
+            }
+
+            document.getElementById('commission-result').innerHTML = resultHtml;
+        }
+
+        function verifyPassword() {
+            const password = document.getElementById('directory-password').value;
+            const messageContainer = document.getElementById('directory-message');
+
+            if (password === 'Timin') {
+                window.location.href = 'https://kdocs.cn/l/ccodUJKHero2';
+            } else {
+                messageContainer.innerText = '密码错误，联系才哥获取。';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
